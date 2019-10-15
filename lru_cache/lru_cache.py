@@ -1,6 +1,4 @@
 from doubly_linked_list import DoublyLinkedList
-import sys
-sys.path.append('../doubly_linked_list')
 
 
 class LRUCache:
@@ -27,8 +25,13 @@ class LRUCache:
     """
 
     def get(self, key):
-        if self.lookup[key]:
-            pass
+        if key in self.lookup:
+            current = self.storage.head
+            while current:
+                if key in current.value:
+                    self.storage.move_to_front(current)
+                current = current.next
+            return self.lookup[key]
         else:
             return None
 
@@ -44,13 +47,20 @@ class LRUCache:
     """
 
     def set(self, key, value):
-        if self.lookup[key]:
+        if key in self.lookup:
             self.lookup[key] = value
             current = self.storage.head
             while current:
-                if current.value[key]:
+                if key in current.value:
                     current.value[key] = value
                 current = current.next
-        self.storage.add_to_head({key: value})
-        if self.size > self.limit:
-            self.storage.remove_from_tail()
+        else:
+            # print(self.storage.head)
+            if self.size == self.limit:
+                tail = self.storage.remove_from_tail()
+                for key1 in tail:
+                    del self.lookup[key1]
+            else:
+                self.size += 1
+            self.storage.add_to_head({key: value})
+            self.lookup[key] = value
