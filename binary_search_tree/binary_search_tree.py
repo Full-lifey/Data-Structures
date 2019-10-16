@@ -1,7 +1,7 @@
+from dll_stack import Stack
+from dll_queue import Queue
 import sys
 sys.path.append('../queue_and_stack')
-from dll_queue import Queue
-from dll_stack import Stack
 
 
 class BinarySearchTree:
@@ -20,6 +20,7 @@ class BinarySearchTree:
         pass
 
     # Return the maximum value found in the tree
+
     def get_max(self):
         pass
 
