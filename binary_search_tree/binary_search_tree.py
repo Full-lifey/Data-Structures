@@ -97,7 +97,7 @@ class BinarySearchTree:
         self.dft_stack = Stack()
 
         self.dft_stack.push(node)
-        while len(dft_stack) > 0:
+        while len(self.dft_stack) > 0:
             item = self.dft_stack.pop()
             print(item)
             if item.left:
