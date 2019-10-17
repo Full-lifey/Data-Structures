@@ -1,5 +1,5 @@
-# from dll_stack import Stack
-# from dll_queue import Queue
+from dll_queue import Queue
+from dll_stack import Stack
 import sys
 sys.path.append('../queue_and_stack')
 
@@ -66,17 +66,44 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        values = []
+
+        def traverse_tree(node):
+            if node.left:
+                traverse_tree(node.left)
+            values.append(node)
+            if node.right:
+                traverse_tree(node.right)
+        for value in values:
+            print(value)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        self.bft_queue = Queue()
+
+        self.bft_queue.enqueue(node)
+        while self.bft_queue.size > 0:
+            item = self.bft_queue.dequeue
+            print(item)
+            if item.left:
+                self.bft_queue.enqueue(item.left)
+            if item.right:
+                self.bft_queue.enqueue(item.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        self.dft_stack = Stack()
+
+        self.dft_stack.push(node)
+        while len(dft_stack) > 0:
+            item = self.dft_stack.pop()
+            print(item)
+            if item.left:
+                self.dft_stack.push(item.left)
+            if item.right:
+                self.dft_stack.push(item.right)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
